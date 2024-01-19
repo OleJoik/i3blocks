@@ -1,0 +1,36 @@
+# Global properties
+markup=pango
+
+[kubecontext]
+command=sh -c 'if [ "$BLOCK_BUTTON" = "1" ]; then alacritty --class=kube-switcher -e ~/scripts/kube-switcher.sh; else echo "<span font=\"Terminus 14\">    󱃾  $(kubectl config current-context)    </span>"; fi'
+interval=1
+
+[wifi]
+command=~/scripts/wifi-status.sh
+interval=10
+button1=notify-send "Hello" "This is a test notification."
+
+[monitors]
+command=~/scripts/monitor-screens.sh
+interval=persist
+
+[mic]
+command=amixer get Capture | awk -F'[][]' '/%/ {if ($2=="0%" || $6=="off") { print "  " } else { print "  " }}'
+interval=1
+
+[volume]
+command=~/scripts/volume-control.sh
+interval=1
+
+[headset]
+command=~/scripts/headset-battery.sh
+interval=5
+
+[battery]
+command=~/scripts/battery-status.sh
+interval=1
+markup=pango
+
+[time]
+command=date "+<span font='Terminus 14'>    %a %d-%m W-%V %H:%M:%S    </span>"
+interval=1
